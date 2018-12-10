@@ -1,0 +1,9 @@
+package com.amos.entityapi.entity;
+
+public enum SQLDataType {
+
+	INTEGER, CHAR, BIGINT, DATE ,TIME ,TIMESTAMP ,VARCHAR,DECIMAL, BIT,
+	TINYINT,SMALLINT,REAL,DOUBLE,SERIAL,BIGSERIAL,
+	NULL, 
+	
+}
