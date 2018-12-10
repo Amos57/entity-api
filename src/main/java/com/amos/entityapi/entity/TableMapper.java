@@ -10,5 +10,5 @@ public interface TableMapper {
 	List<String> getColumns();
 	List<TableRow> getProperties();
 	Class<?> getEntityClass();
-	
+	List<?> getAutoValues();
 }

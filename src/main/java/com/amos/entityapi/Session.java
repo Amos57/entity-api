@@ -6,11 +6,20 @@ import java.util.List;
 
 public interface Session extends Serializable{
 
-	boolean update(Object o,Object id);
+	boolean update(Object o,Object...id);
 	boolean save(Object o);
-	boolean delete(Object o);
-	Object get(Class<?> clazz,Object id);
-	List<?> forList();
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * @param o - object
+	 * @param param number field from object, top to down, begin from zero
+	 * @return
+	 */
+	boolean delete(Object o,int param);
+	Object get(Class clazz,Object id);
+	List<?> forList(Class clazz);
 	void beginTransaction();
 	void commit();
 	List<?> forFilterList(Class<?> clazz);

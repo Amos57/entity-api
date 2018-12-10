@@ -15,9 +15,10 @@ public abstract class Dialect {
 
 	protected  Map<Class<?>, TableMapper> tables= new HashMap<Class<?>, TableMapper>();
 	protected CreateTable createTable;
-	protected boolean showSQL;
-	protected Dialect(Connection connection, String udaDel,List<Class<?>> classes,boolean showsql) {
-		this.showSQL=showsql;
+	protected Connection connection;
+	
+	protected Dialect(Connection connection, String udaDel,List<Class<?>> classes) {
+		this.connection=connection;
 	}
 
 	protected void init(String val,TableMapper tableMapper) {

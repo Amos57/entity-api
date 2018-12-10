@@ -21,10 +21,10 @@ public class CreateTableMySQL implements CreateTable {
 
 
 	private Connection connection;
-	private boolean  showsql;
-	public CreateTableMySQL( Connection connection,boolean showsql) {
+
+	public CreateTableMySQL( Connection connection) {
 		this.connection = connection;
-		this.showsql=showsql;
+
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class CreateTableMySQL implements CreateTable {
 		}
         sb.delete(sb.length()-1, sb.length());
         sb.append(")");
-        if(showsql)
+        if(Boolean.parseBoolean(System.getProperty("show_sql", "false")))
         System.out.println("[INFO] - create: "+sb.toString());
         try {
 			ps=connection.prepareStatement(sb.toString());

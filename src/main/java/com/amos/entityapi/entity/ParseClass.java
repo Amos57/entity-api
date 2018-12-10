@@ -12,6 +12,7 @@ public abstract class ParseClass  implements TableMapper{
 	protected String primaryKey;
 	protected List<ForeignKey> foreignKey = new ArrayList<>();
 
+	protected List<String> autoValue= new ArrayList<>();
 	protected List<String> column = new ArrayList<String>();
 	protected List<TableRow> properties = new ArrayList<>();
 	protected Class<?> clas;
@@ -53,6 +54,8 @@ public abstract class ParseClass  implements TableMapper{
 	public List<ForeignKey> getForeignKey() {
 		return foreignKey;
 	}
-	
+	public List<String> getAutoValues(){
+		return autoValue;
+	}
 	protected abstract String getTypeSQL(Field field) ;
 }

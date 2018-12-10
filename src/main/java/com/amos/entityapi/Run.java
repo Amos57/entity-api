@@ -60,11 +60,10 @@ public class Run {
 			try {
 				@SuppressWarnings("unchecked")
 				Class<? extends Dialect> cls=(Class<? extends Dialect>) Class.forName(loadXMLConfiguration.getDialect());
-				Constructor<? extends Dialect>constructor=(Constructor<? extends Dialect>) cls.getConstructor(Connection.class,String.class,List.class,boolean.class);
+				Constructor<? extends Dialect>constructor=(Constructor<? extends Dialect>) cls.getConstructor(Connection.class,String.class,List.class);
 				return constructor.newInstance(getConnectionPool().getConnection(),
 						loadXMLConfiguration.getCreate_update(),
-						lc.getClasses(),
-						loadXMLConfiguration.getShowSQL());
+						lc.getClasses());
 			} catch (ClassNotFoundException e) {
 				System.err.println("[ERROR] - класс диалекта не найден "+loadXMLConfiguration.getDialect());
 			} catch (NoSuchMethodException e) {
@@ -84,5 +83,8 @@ public class Run {
 			}
 		}
 		return  dialect;
+	}
+	public Session getSession(){
+		return dialect.getSession();
 	}
 }

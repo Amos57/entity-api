@@ -9,9 +9,9 @@ import com.amos.entityapi.Session;
 public class MySQLDialect extends Dialect{
 
 	
-	public MySQLDialect(Connection connection, String udaDel, List<Class<?>> classes,boolean showsql) {
-		super(connection, udaDel, classes,showsql);
-		createTable= new CreateTableMySQL(connection,showSQL);
+	public MySQLDialect(Connection connection, String udaDel, List<Class<?>> classes) {
+		super(connection, udaDel, classes);
+		createTable= new CreateTableMySQL(connection);
 		for(Class<?> class1 : classes){
 			tables.put(class1, new ParseClassMySQL(class1));
 			init(udaDel, tables.get(class1));
@@ -21,8 +21,7 @@ public class MySQLDialect extends Dialect{
 
 	@Override
 	protected Session getSession() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MySQLSession(connection, tables);
 	}
 
 	

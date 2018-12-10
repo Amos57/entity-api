@@ -32,13 +32,13 @@ public class ParseClassMySQL extends ParseClass {
 				continue;
 
 			AutoValue au = f.getAnnotation(AutoValue.class);
-			if (au != null)
+			if (au != null){
 				ai = "AUTO_INCREMENT";
+				autoValue.add(name);
+			}
 			Column column = f.getAnnotation(Column.class);
 			if (column == null) {
-				if (primaryKey == null)
-					primaryKey = f.getAnnotation(Id.class) == null ? null : f
-							.getName();
+							
 				this.column.add(f.getName());
 				this.properties.add(new Property(f.getName() + " "
 						+ getTypeSQL(f) + " " + ai));
@@ -58,15 +58,17 @@ public class ParseClassMySQL extends ParseClass {
 					: "";
 			String unique = column.unique() ? "UNIQUE" : "";
 			String notnull = column.notnull() ? "NOT NULL" : "";
-			String defValue = !column.defValue().equals("") ? column.defValue()
+	/*		String defValue = !column.defValue().equals("") ? column.defValue()
 					: "";
 			if (f.getType().getSimpleName().equals("String")
 					&& !defValue.equals(""))
-				defValue = "\'" + defValue + "\'";
-            
+				defValue = "\'" + defValue + "\'";*/
+			this.column.add(name);
 			properties.add(new Property(name, SQLDataType.valueOf(type), len,
-					ai, unique, notnull, defValue));
+					ai, unique, notnull));//defValue
 			}
+			
+			
 			if (primaryKey == null)
 				primaryKey = f.getAnnotation(Id.class) == null ? null : name;
 			ManyToMany mtm = f.getAnnotation(ManyToMany.class);

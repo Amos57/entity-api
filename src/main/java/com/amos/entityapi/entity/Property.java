@@ -8,7 +8,7 @@ public class Property implements TableRow {
 	private String ai;
 	private String unique;
 	private String notnull;
-	private String defValue;
+	//private String defValue;
 
 	private String query;
 
@@ -17,14 +17,14 @@ public class Property implements TableRow {
 	}
 
 	public Property(String name, SQLDataType sqlDataType, String length,
-			String ai, String unique, String notnull, String defValue) {
+			String ai, String unique, String notnull) {//, String defValue
 		this.name = name;
 		this.sqlDataType = sqlDataType;
 		this.length = length;
 		this.ai = ai;
 		this.unique = unique;
 		this.notnull = notnull;
-		this.defValue = defValue;
+	//	this.defValue = defValue;
 	}
 
 	public String getName() {
@@ -47,9 +47,9 @@ public class Property implements TableRow {
 		return notnull;
 	}
 
-	public String getDefValue() {
+/*	public String getDefValue() {
 		return defValue;
-	}
+	}*/
 
 	public String getAutoValue() {
 		return ai;
@@ -58,7 +58,7 @@ public class Property implements TableRow {
 	@Override
 	public String toString() {
 		return query != null ? query : name + " " + sqlDataType.name()
-				+ length + " " + unique + " " + notnull + " " + (!defValue.equals("") ? "DEFAULT "+defValue : "");
+				+ length + " " + unique + " " + notnull;// + " " + (!defValue.equals("") ? "DEFAULT "+defValue : "");
 	}
 
 	@Override

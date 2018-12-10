@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 	 private String user;
 	 private String url;
 	 private int poolSize;
-	 private boolean showSQL;
+	 private String showSQL;
 	 private String create_update;
 	 private final String path;
 	 private String dialect;
@@ -66,7 +66,8 @@ import java.io.InputStreamReader;
 		 }else if(row.contains(POOL_SIZE)){
 			  poolSize = Integer.parseInt(row.substring(row.indexOf(">")+1,row.lastIndexOf("<")));
 		 }else if(row.contains(SHOW_SQL)){
-			  showSQL=Boolean.parseBoolean(row.substring(row.indexOf(">")+1,row.lastIndexOf("<")));
+			  showSQL=row.substring(row.indexOf(">")+1,row.lastIndexOf("<"));
+			  System.setProperty("show_sql", showSQL);
 		 }else if(row.contains(HBM2DDL)){
 			  create_update=row.substring(row.indexOf(">")+1,row.lastIndexOf("<"));
 
@@ -104,7 +105,7 @@ import java.io.InputStreamReader;
     	return classes;
     }
 
-	public boolean getShowSQL() {
+	public String getShowSQL() {
 		return showSQL;
 	}
 

@@ -8,7 +8,7 @@ public interface TableRow {
 	String getAutoValue();
 	String getUnique();
 	String getNotnull();
-	String getDefValue();
+	//String getDefValue();
 	
 	String getQuery();
 }

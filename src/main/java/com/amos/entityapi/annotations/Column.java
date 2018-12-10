@@ -18,7 +18,7 @@ public @interface Column {
 	int length() default 0;
 	boolean unique() default false;
 	boolean notnull() default false;
-	String defValue() default "";
+//	String defValue() default "";
 	
 	
 	
